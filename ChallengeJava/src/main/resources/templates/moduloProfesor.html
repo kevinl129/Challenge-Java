@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<meta charset="ISO-8859-1">
+<title>Nuevo Profesor</title>
+</head>
+<body>
+
+	<div class="container mt-5">
+        <h2>Modulo Profesor</h2>
+		<form th:action="@{/guardar-profesor}" th:object="${profesor}" method="POST">
+			<div class="form-group">
+				<label>DNI</label>
+				 <input th:field="*{dniProf}" type="number" class="form-control"
+					placeholder="Introduce DNI Profesor"
+					 name="dniProfesor">
+			</div>
+			<div class="form-group">
+				<label>Nombre</label>
+				 <input th:field="*{nameProf}" type="text" class="form-control"
+			   placeholder="Introduce nombre Profesor"
+					name="nombreProfesor">
+			</div>
+			<div class="form-group">
+				<label>Apellido</label>
+				 <input th:field="*{surnameProf}" type="text" class="form-control"
+					 placeholder="Introduce apellido Profesor"
+					 name="apellidoProfesor">
+
+			</div>
+
+			<div class="form-group">
+				<select th:field="*{activeProf}" class="form-select" aria-label="Default select example">
+					<option th:each="estado:${listaEstados}"
+					  th:value="${estado}"
+                      th:text="${estado}">
+				<!-- <option th:value="No activo" th:text="No activo">-->
+				  </select>
+			</div>
+
+
+		  <button type="submit" class="btn btn-primary" name="aceptar">Aceptar</button>
+
+		</form>
+					<a th:href="@{/listar-profesores}" ><button type="submit" class="btn btn-danger" name="cancelar">Cancelar</button></a>
+		
+	</div>
+
+</body>
+</html>

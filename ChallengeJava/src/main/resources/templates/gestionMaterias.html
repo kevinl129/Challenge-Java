@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<meta charset="ISO-8859-1">
+<title>Gestion Materias</title>
+</head>
+<body>
+    <div class="container">
+    <nav class="navbar navbar-light bg-light">
+		
+		<form class="form-inline" action="">
+
+      <a th:href="@{/nueva-materia}" class="btn btn-outline-success my-2 my-sm-0" type="submit">+ Nueva Materia</a>
+		
+		          <h2> Gestion de Materias</h2>
+	
+		</form>
+		<form class="form-inline" action="/inicio-administrador">
+
+			<button class="btn btn-outline-danger" type="submit">Volver</button>
+				
+		</form>
+			
+	</nav>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Horario Inicio</th>
+            <th scope="col">Horario Fin</th>
+            <th scope="col">Profesor</th>
+            <th scope="col">Cant. Max. Alumnos</th>
+            <th scope="col">Acciones</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="materia:${listaMaterias}">
+            <th scope="row" th:text="${materia.getNameSub}"></th>
+            <td th:text="${materia.getStartTimeSub}"></td>
+            <td th:text="${materia.getFinishTimeSub}"></td>
+            <td th:text="${materia.professor.getNameProf}"></td>
+            <td th:text="${materia.getMaxQuantity}"></td>
+            <td> 
+            <div class="inline">
+                <form action="">
+                   <a href=""> <button class="btn btn-warning" type="submir">Editar</button></a>
+               
+                   <a href=""> <button class="btn btn-dark" type="submir">Eliminar</button></a>
+                </form>
+            </div>
+            </td>
+          </tr>
+        
+        </tbody>
+      </table>
+</div>
+</body>
+</html>

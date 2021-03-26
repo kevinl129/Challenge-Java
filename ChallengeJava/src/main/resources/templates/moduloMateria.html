@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <meta charset="ISO-8859-1">
+    <title>Nueva Materia</title>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <h2>Modulo Materia</h2>
+        <form th:action="@{/guardar-materia}" th:object="${materia}" method="POST">
+
+            <div class="form-group">
+
+                <label>Nombre</label>
+                <input th:field="*{nameSub}" th:type="text" class="form-control"  name="nombreMateria">
+            </div>
+            <div class="form-group">
+                <label>Horario Inicio</label>
+                <input th:field="*{startTimeSub}" th:type="time" class="form-control"  name="horaioInicioMateria">
+            </div>
+            <div class="form-group">
+                <label>Horario Fin</label>
+                <input th:field="*{finishTimeSub}" th:type="time" class="form-control"  name="horarioFinMateria">
+            </div>
+            <!--
+            <div class="form-group">
+                <label>Profesor</label>
+                <input th:field="*{professor.nameProf}" type="text" class="form-control"  name="profesorMateria">
+            </div>
+            -->
+            <div class="form-group">
+            <label>Profesor</label>
+				<select th:field="*{professor}" class="form-select" aria-label="Default select example">
+					<option th:each="profe:${listaProfesores}"
+                    th:value="${profe.dniProf}"
+                    th:text="${profe.nameProf}"
+                    >
+				  </select>
+			</div>
+            <div class="form-group">
+                <label>Cant. Max. Alumnos</label>
+                <input th:field="*{maxQuantity}" type="number" class="form-control" value="" name="cantMaxMateria">
+            </div>
+
+    		  <button type="submit" class="btn btn-primary" name="aceptar">Aceptar</button>
+    
+        </form>
+          <a th:href="@{/listar-materias}" ><button type="submit" class="btn btn-danger" name="cancelar">Cancelar</button></a>
+        
+    </div>
+
+</body>
+
+</html>

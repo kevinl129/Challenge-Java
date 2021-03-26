@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!--PONER THYMELEAF en el link de bootstrap -->
+    <link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<meta charset="ISO-8859-1">
+<title>Gestion Profesores</title>
+</head>
+<body>
+    <div class="container">
+    <nav class="navbar navbar-light bg-light">
+		
+		<form class="form-inline" action="">
+
+			<a th:href="@{/nuevo-profesor}" class="btn btn-outline-success my-2 my-sm-0" type="submit">+ Nuevo Profesor</a>
+		          <h2> Gestion Profesores</h2>
+	
+		</form>
+		<form class="form-inline" action="/inicio-administrador">
+
+			<button class="btn btn-outline-danger" type="submit">Volver</button>
+				
+		</form>
+			
+	</nav>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">DNI</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Activo</th>
+            <th scope="col">Acciones</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="profesor:${listaProfesores}">
+            <th scope="row" th:text="${profesor.getDniProf}"></th>
+            <td th:text="${profesor.getNameProf}"></td>
+            <td th:text=" ${profesor.getSurnameProf}"></td>
+            <td th:text="${profesor.getActiveProf}"></td>
+            <td> <div class="inline">
+               
+                 <a th:href="@{/editar-profesor/}+${profesor.getDniProf}" class="btn btn-warning" type="submit">Editar</a>
+             
+                
+                 <a th:href="@{/eliminar-profesor/}+${profesor.getDniProf}" class="btn btn-danger" type="submit">Eliminar</a>
+               
+            </div>
+            </td>
+          </tr>
+        
+        </tbody>
+      </table>
+</div>
+</body>
+</html>
